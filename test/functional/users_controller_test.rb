@@ -4,6 +4,7 @@ class UsersControllerTest < ActionController::TestCase
 
   def setup
     @user = users(:one)
+    sign_in @user
   end
 
   def test_index

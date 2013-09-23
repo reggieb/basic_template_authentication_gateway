@@ -24,4 +24,4 @@ gem 'devise'  # Used for authentication within this app (that is, it is not used
 
 gem "omniauth-google-oauth2"
 
-
+gem 'dibber' # Tidies up database seeds
