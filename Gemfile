@@ -11,10 +11,12 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
+
+gem 'jquery-rails'
 
 gem 'strong_parameters'  # allows rails 4 params engine to be used in rails 3
 

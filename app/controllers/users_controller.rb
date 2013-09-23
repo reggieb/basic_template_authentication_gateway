@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_filter :get_user, only: [:show, :edit, :update, :delete]
+  before_filter :get_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -15,25 +15,23 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      flash[:notice] = "User created"
-      redirect_to user_path(@user)
-    else
-      render :new
-    end
+    @user = User.new
+    update_user "User created"
   end
 
   def edit
-
+    render :new
   end
 
   def update
-
+    remove_empty_password_params
+    update_user "User updated"
   end
 
-  def delete
-
+  def destroy
+    @user.destroy
+    flash[:notice] = 'User deleted'
+    redirect_to users_path
   end
 
   private
@@ -41,13 +39,27 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def update_user(message)
+    @user.attributes = user_params
+    if @user.save
+      flash[:notice] = message
+      redirect_to user_path(@user)
+    else
+      render :new
+    end
+  end
+
   def user_params
-    params.require(:user).permit(
+    @user_params ||= params.require(:user).permit(
       :first_name,
       :last_name,
       :email,
       :password,
       :password_confirmation
     )
+  end
+
+  def remove_empty_password_params
+    user_params.delete_if{|key, value| (/password/ =~ key.to_s) && value.blank?}
   end
 end
