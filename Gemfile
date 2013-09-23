@@ -16,6 +16,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'strong_parameters'  # allows rails 4 params engine to be used in rails 3
+
+gem 'devise'  # Used for authentication within this app (that is, it is not used for authentication through this app)
+
 gem "omniauth-google-oauth2"
 
 

@@ -1,0 +1,16 @@
+<h1>Users</h1>
+
+<%= link_to 'Create user', new_user_path %>
+
+<% if @users.empty? %>
+<h2>No users</h2>
+<p>There are currently no users in the database</p>
+<% else %>
+
+<ul>
+<%   @users.each do |user| %>
+  <li><%= link_to 'user.email', user_path(user) %></li>
+<%   end %>
+</ul>
+
+<% end %>

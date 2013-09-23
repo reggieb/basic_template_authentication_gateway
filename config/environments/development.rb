@@ -16,6 +16,18 @@ Antechamber::Application.configure do
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
 
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+  :address              => "localhost",
+  :port                 => 25,
+  :domain               => 'localhost',
+  :authentication       => 'none',
+  :openssl_verify_mode => 'none'
+  }
+
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
@@ -35,3 +47,11 @@ Antechamber::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 end
+
+class OverrideMailReciptient
+  def self.delivering_email(mail)
+    mail.subject = "#{mail.subject} (sent to #{mail.to})"
+    mail.to = "developer@localhost"
+  end
+end
+ActionMailer::Base.register_interceptor(OverrideMailReciptient)
