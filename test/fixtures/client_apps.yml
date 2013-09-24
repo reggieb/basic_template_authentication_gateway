@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  return_url: MyString
+  client_id: MyString
+  client_secret: MyString
+  owner_id: 
+
+two:
+  name: MyString
+  return_url: MyString
+  client_id: MyString
+  client_secret: MyString
+  owner_id: 
