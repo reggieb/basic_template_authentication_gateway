@@ -15,6 +15,8 @@
     <ul class="nav navbar-nav">
       <%= link_to_nav 'User', root_path %>
       <%= link_to_nav 'Applications', client_apps_path %>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
       <li><%= user_signed_in? ? link_to_logout : link_to_login %></li>
     </ul>
   </div>
