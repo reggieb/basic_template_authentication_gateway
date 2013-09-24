@@ -3,6 +3,8 @@ class ClientApp < ActiveRecord::Base
 
   before_create :creation_tasks
 
+  belongs_to :owner, :class_name => 'User'
+
   def self.secret_generator
     SecureRandom.uuid
   end

@@ -1,0 +1,10 @@
+<h1>Client applications</h1>
+
+<%= link_to 'Register new app', new_client_app_path %>
+
+<% if @client_apps.empty? %>
+<h2>None registered</h2>
+<p>Currently there are no applications registered</p>
+<% else %>
+<%= render @client_apps %>
+<% end %>

@@ -3,7 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 
   def setup
-    @user = users(:one)
+    @user = users(:fred)
   end
 
   def test_full_name

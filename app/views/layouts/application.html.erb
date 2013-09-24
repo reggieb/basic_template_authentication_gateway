@@ -1,20 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Antechamber</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  
 </head>
 <body>
+  <nav class="navbar navbar-default" role="navigation">
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <%= link_to_nav 'User', root_path %>
+      <%= link_to_nav 'Applications', client_apps_path %>
+      <li><%= user_signed_in? ? link_to_logout : link_to_login %></li>
+    </ul>
+  </div>
+  </nav>
 
-  <p><%= user_signed_in? ? link_to('Logout', destroy_user_session_path, :method => :delete) : link_to('Login', new_user_session_path)  %> </p>
+  <div class="container">
 
+    <%= content_tag('p', notice, class: 'notice') if notice %>
+    <%= content_tag('p', alert, class: 'alert') if alert %>
 
-  <%= content_tag('p', notice, class: 'notice') if notice %>
-  <%= content_tag('p', alert, class: 'alert') if alert %>
+    <%= yield %>
+  </div>
 
-<%= yield %>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>

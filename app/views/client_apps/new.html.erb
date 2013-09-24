@@ -1,0 +1,16 @@
+<%= form_for(@client_app) do |f|  %>
+
+  <div class="field">
+    <%= f.label :name  %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :return_url  %>
+    <%= f.text_field :return_url %>
+  </div>
+
+  <%= f.submit %>
+
+
+<% end %>

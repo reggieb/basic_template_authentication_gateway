@@ -3,7 +3,7 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
 
   def setup
-    @user = users(:one)
+    @user = users(:fred)
     sign_in @user
   end
 
@@ -47,7 +47,7 @@ class UsersControllerTest < ActionController::TestCase
   def test_update
     email = 'new@example.com'
     assert_no_difference 'User.count' do
-      put :update, id: @user, user: {'email' => email}
+      put :update, id: @user, user: {email: email}
       assert_equal email, @user.reload.email
     end
     
