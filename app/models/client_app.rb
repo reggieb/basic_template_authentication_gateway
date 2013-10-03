@@ -5,12 +5,20 @@ class ClientApp < ActiveRecord::Base
 
   belongs_to :owner, :class_name => 'User'
 
+  has_many :manifests
+
+  validates :return_url, presence: true
+
   def self.secret_generator
     SecureRandom.uuid
   end
 
   def self.app_domain
     'warwickshire.gov.uk'
+  end
+
+  def self.authenticate(args)
+    find_by_client_id_and_client_secret(args[:id], args[:secret])
   end
 
   private

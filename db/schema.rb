@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130924075600) do
+ActiveRecord::Schema.define(:version => 20131003153533) do
 
   create_table "client_apps", :force => true do |t|
     t.string   "name"
@@ -21,6 +21,27 @@ ActiveRecord::Schema.define(:version => 20130924075600) do
     t.integer  "owner_id"
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "manifests", :force => true do |t|
+    t.string   "code"
+    t.string   "access_token"
+    t.string   "refresh_token"
+    t.string   "state"
+    t.text     "redirect_uri",  :limit => 500
+    t.datetime "expires_at"
+    t.integer  "client_app_id"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "people", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.integer  "manifest_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|

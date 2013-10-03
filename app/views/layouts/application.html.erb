@@ -13,7 +13,7 @@
   <nav class="navbar navbar-default" role="navigation">
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <%= link_to_nav 'User', root_path %>
+      <%= link_to_nav 'Users', root_path %>
       <%= link_to_nav 'Applications', client_apps_path %>
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -28,6 +28,9 @@
     <%= content_tag('p', alert, class: 'alert') if alert %>
 
     <%= yield %>
+
+    <h2>omniauth.auth</h2>
+    <%= request.env["omniauth.auth"] || 'None detected'  %>
   </div>
 
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
