@@ -1,4 +1,4 @@
-== Basic Template for an Authentication Gateway
+= Basic Template for an Authentication Gateway
 
 Antechamber is currently at an early stage of development. I wish to preserve
 a copy of its current state, as a reference of what a minimal authentication
@@ -7,7 +7,7 @@ gateway can look like.
 This example is of a rails application set up as a gateway to a single authority:
 Google.
 
-=== Why have an authentication gateway?
+== Why have an authentication gateway?
 
 An Authentication Gateway can greatly simplify the management of the relationship
 between a group of web applications, and the authority applications used to
@@ -44,7 +44,7 @@ the gateway needs to register with each authority.
 If we return to the ten applications using five trusted authorities example, the
 number of relationships drops from 50, to 5 + 10 = 15.
 
-=== Client applications
+== Client applications
 Each client application needs to be registered with the gateway via the
 client_apps controller. This process will generate an id/secret pair that is
 unique for that client application.
@@ -86,3 +86,14 @@ appear.
 Once the user has authenticated (or not) with google, they will be redirected
 back to "/auth/antechamber/callback". See the omniauth README for information on
 how you can handle the information returned: https://github.com/intridea/omniauth
+
+== Google Authentication
+
+For this gateway to connect to Google, a valid google id and secret need to be
+added to the configuration. You can do this by adding config/application.yml to
+antechamber, with the following content:
+
+    GOOGLE_ID: <your_google_id>
+    GOOGLE_SECRET: <your_google_secret>
+
+You can get a google id/secret pair via the google api console: https://code.google.com/apis/console/b/0

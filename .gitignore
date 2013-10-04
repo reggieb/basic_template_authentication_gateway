@@ -16,3 +16,5 @@
 
 # rvm config file
 .ruby-*
+# Ignore application configuration
+/config/application.yml
