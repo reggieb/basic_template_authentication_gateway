@@ -1,3 +1,4 @@
+# stores state within antechamber, through the authentication process.
 class Manifest < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
 

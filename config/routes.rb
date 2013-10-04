@@ -8,7 +8,7 @@ Antechamber::Application.routes.draw do
 
   post "oauth/token", to: 'authorize#callback_from_client_app'
 
-  get "auth/user", to: 'authorize#user_lookup_by_client_app'
+  get "auth/user", to: 'authorize#identity_lookup_by_client_app'
 
   root :to => "users#index"
 
