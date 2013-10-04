@@ -4,7 +4,7 @@ Antechamber::Application.routes.draw do
 
   get "auth/authorize", to: 'authorize#new', as: 'request_from_client_app'
 
-  get "auth/:id/callback", to: 'callback#show', as: 'callback_from_authority'
+  get "auth/:id/callback", to: 'callback#show', as: 'response_from_authority'
 
   post "oauth/token", to: 'authorize#create', as: 'callback_from_client_app'
 

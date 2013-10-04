@@ -4,7 +4,7 @@ class CallbackController < ApplicationController
      # If the client_id is passed into state like this:
      #   http://localhost:3000/auth/google_oauth2?state=<client_id>
      # the client id is returned when the user returns from google.
-     # The state is created by the client app, and there is used
+     # The state is created by the client app, and this is used
      # to trace the transaction through from the start.
     manifest = Manifest.find_by_state(params[:state])
     client_app = manifest.client_app
