@@ -40,7 +40,7 @@ class AuthorizeController < ApplicationController
 
   end
 
-  # Third step: Authenticate client app and return tokens
+  # Third step: Authenticates client app and return tokens
   def callback_from_client_app
     unless authenticate_client_app
       render json: {error: "Could not authenticate application"}
