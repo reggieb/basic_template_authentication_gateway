@@ -44,6 +44,20 @@ the gateway needs to register with each authority.
 If we return to the ten applications using five trusted authorities example, the
 number of relationships drops from 50, to 5 + 10 = 15.
 
+== Where all the work is done
+
+The key files that provide the gateway functionality are:
+
+    apps/controllers/authorize_controller.rb  # acts as a authority server proxy
+
+    apps/models/manifest.rb      # Maintains state through the authorisation process
+    apps/models/client_app.rb    # Identifies client applications
+    apps/models/people.rb        # Stores identity data
+
+    config/omniauth.rb           # Configures the antechamber's connection to google
+
+    config/routes.rb             # Maps default omniauth paths to antechamber paths
+
 == Client applications
 Each client application needs to be registered with the gateway via the
 client_apps controller. This process will generate an id/secret pair that is
@@ -97,3 +111,26 @@ antechamber, with the following content:
     GOOGLE_SECRET: <your_google_secret>
 
 You can get a google id/secret pair via the google api console: https://code.google.com/apis/console/b/0
+
+== Devise and Users
+
+Note that the gateway operation of antechamber does not involve the User model
+nor Devise. Devise and Users are used for logging onto this app to register
+client apps. You could remove Devise, client_apps_controller, and users_controller; and
+the gateway would still work. However, you'd then have to find another way
+to register and manager the ClientApp objects.
+
+== Influences
+
+This app was greatly influenced by:
+
+http://blog.joshsoftware.com/2010/12/16/multiple-applications-with-devise-omniauth-and-single-sign-on/
+
+I spent a lot of time reading Oauth documentation such as this:
+
+http://tools.ietf.org/html/draft-ietf-oauth-v2-22
+
+This documentation helped me identify many of things I would need to do, to build
+a gateway. However, the Josh Software blog provided the most straight-forward examples
+of how to get near to what I wanted. It was only after reading this, that I started
+to feel I knew how the separate bits needed to be glued together.
