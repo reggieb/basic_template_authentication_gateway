@@ -47,8 +47,8 @@ class ClientAppTest < ActiveSupport::TestCase
   end
 
   def new_client_app
-    @return_url = 'https:/example.com'
-    @new_client_app ||= ClientApp.create(return_url: @return_url)
+    @return_uri = 'https:/example.com'
+    @new_client_app ||= ClientApp.create(return_uri: @return_uri)
   end
 
 end

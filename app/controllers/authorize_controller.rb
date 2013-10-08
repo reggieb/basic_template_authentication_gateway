@@ -23,7 +23,7 @@ class AuthorizeController < ApplicationController
       initialize_manifest
       forward_to_trusted_authority
     else
-      render json: "Could not start process to authenticate"
+      render_error "Could not start process to authenticate"
     end
 
   end
@@ -33,9 +33,9 @@ class AuthorizeController < ApplicationController
 
     if identity_returned?
       store_identity_information
-      redirect_to "#{@client_app.return_url}?code=#{@manifest.code}&response_type=code&state=#{params[:state]}"
+      redirect_to "#{@client_app.return_uri}?code=#{@manifest.code}&response_type=code&state=#{params[:state]}"
     else
-      render json: {error: "Failed authentication"}
+      render_error "Failed authentication"
     end
 
   end
@@ -43,12 +43,12 @@ class AuthorizeController < ApplicationController
   # Third step: Authenticates client app and return tokens
   def callback_from_client_app
     unless authenticate_client_app
-      render json: {error: "Could not authenticate application"}
+      render_error "Could not authenticate application"
       return
     end
 
     unless manifest_by_code_or_grant_type
-      render json: {error: "Could not authenticate access code"}
+      render_error "Could not authenticate access code"
       return
     end
 
@@ -62,17 +62,19 @@ class AuthorizeController < ApplicationController
   # Final step :Client app requests identify information
   def identity_lookup_by_client_app
 
-    get_person_via_manifest
-
-    render json: {
-      provider: 'antechamber',
-      id: @person.id.to_s,
-      email: @person.email,
-      extra: {
-         first_name: @person.first_name,
-         last_name: @person.last_name
+    if get_person_via_manifest
+      render json: {
+        provider: 'antechamber',
+        id: @person.id.to_s,
+        email: @person.email,
+        extra: {
+           first_name: @person.first_name,
+           last_name: @person.last_name
+        }
       }
-    }
+    else
+      render_error "Failed authentication"
+    end
   end
 
   private
@@ -146,7 +148,11 @@ class AuthorizeController < ApplicationController
 
   def get_person_via_manifest
     manifest = Manifest.find_by_access_token(params[:oauth_token])
-    @person = manifest.person
+    @person = manifest.person if manifest
+  end
+
+  def render_error(message)
+      render  json: {error: message},  status: :unauthorized
   end
 
 end

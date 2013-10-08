@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20131003153533) do
 
   create_table "client_apps", :force => true do |t|
     t.string   "name"
-    t.text     "return_url",    :limit => 500
+    t.text     "return_uri",    :limit => 500
     t.string   "client_id"
     t.string   "client_secret"
     t.integer  "owner_id"

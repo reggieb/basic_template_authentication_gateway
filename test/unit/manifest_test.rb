@@ -3,7 +3,7 @@ require 'test_helper'
 class ManifestTest < ActiveSupport::TestCase
 
   def setup
-    @client_app = ClientApp.create(return_url: 'https://example.com')
+    @client_app = ClientApp.create(return_uri: 'https://example.com')
     @manifest = @client_app.manifests.create
   end
 

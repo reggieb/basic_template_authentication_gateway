@@ -2,7 +2,7 @@
 
 example:
   name: example
-  return_url: http://example.com/somewhere
+  return_uri: http://example.com/somewhere
   client_id: aaaaaaaaaaaaaa.warwickshire.gov.uk
   client_secret: <%= SecureRandom.uuid %>
   owner: fred

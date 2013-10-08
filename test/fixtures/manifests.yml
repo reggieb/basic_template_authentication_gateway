@@ -1,15 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  code: MyString
-  access_token: MyString
-  refresh_token: MyString
+  id: 1
+  code: <%= SecureRandom.uuid %>
+  access_token: <%= SecureRandom.uuid %>
+  refresh_token: <%= SecureRandom.uuid %>
   expires_at: 2013-10-01 14:33:57
   client_app_id: 1
 
 two:
-  code: MyString
-  access_token: MyString
-  refresh_token: MyString
+  id: 2
+  code: <%= SecureRandom.uuid %>
+  access_token: <%= SecureRandom.uuid %>
+  refresh_token: <%= SecureRandom.uuid %>
   expires_at: 2013-10-01 14:33:57
   client_app_id: 1

@@ -52,7 +52,7 @@ class ClientAppsController < ApplicationController
 
   def client_app_params
     @client_app_params ||= params.require(:client_app).permit(
-      :return_url,
+      :return_uri,
       :name
     )
   end

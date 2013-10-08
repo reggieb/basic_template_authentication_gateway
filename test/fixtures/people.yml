@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  first_name: MyString
-  last_name: MyString
-  email: MyString
+  first_name: Joe
+  last_name: Bloggs
+  email: jblogs@example.com
   manifest_id: 1
 
 two:
-  first_name: MyString
-  last_name: MyString
-  email: MyString
-  manifest_id: 1
+  first_name: Jane
+  last_name: Doe
+  email: jane@example.com
+  manifest_id: 2

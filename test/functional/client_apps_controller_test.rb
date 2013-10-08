@@ -28,7 +28,7 @@ class ClientAppsControllerTest < ActionController::TestCase
     assert_difference 'ClientApp.count' do
       post :create, client_app: {
         name: name,
-        return_url: 'http://example.com/new/place'
+        return_uri: 'http://example.com/new/place'
       }
     end
     client_app = ClientApp.last

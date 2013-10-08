@@ -48,13 +48,13 @@ number of relationships drops from 50, to 5 + 10 = 15.
 
 The key files that provide the gateway functionality are:
 
-    apps/controllers/authorize_controller.rb  # acts as a authority server proxy
+    apps/controllers/authorize_controller.rb  # acts as an authority server proxy
 
     apps/models/manifest.rb      # Maintains state through the authorisation process
     apps/models/client_app.rb    # Identifies client applications
     apps/models/people.rb        # Stores identity data
 
-    config/omniauth.rb           # Configures the antechamber's connection to google
+    config/omniauth.rb           # Configures antechamber's connection to google
 
     config/routes.rb             # Maps default omniauth paths to antechamber paths
 

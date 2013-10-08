@@ -7,7 +7,7 @@ class ClientApp < ActiveRecord::Base
 
   has_many :manifests
 
-  validates :return_url, presence: true
+  validates :return_uri, presence: true
 
   def self.secret_generator
     SecureRandom.uuid
